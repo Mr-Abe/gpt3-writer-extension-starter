@@ -1,16 +1,32 @@
 {
-  "name": "GPT-3 Writer",
-  "description": "Write a blog post in the style of your favorite thinker anywhere!",
-  "version": "1.0",
-  "manifest_version": 3,
-  "icons": {
-    "48": "assets/48.png",
-    "72": "assets/72.png",
-    "96": "assets/96.png",
-    "144": "assets/144.png"
-  },
-  "action": {
-    "default_popup": "index.html",
-    "default_title": "Generate blog post"
+
+    "name": "Article Generator",
+    "manifest_version": 2,
+    "version": "1.0",
+  
+    "description": "Generates an article in a style similar to HBR.",
+  
+    "icons": {
+      "144": "assets/type_writer_144_size.png"
+    },
+    "browser_action": {
+      "default_popup": "index.html",
+      "default_title": "Article Generator"
+    },
+
+    "content_scripts": [
+      {
+        "matches": ["https://*/*",
+                    "http://*/*",
+                    "file://*/*"],
+        "js": ["scripts/content.js"]
+      }
+    ],
+
+    "background": {
+      "scripts": ["scripts/contextMenuServiceWorker.js"]
+    },
+      
+    "permissions": ["contextMenus", "activeTab", "storage"]
+  
   }
-}
